@@ -80,21 +80,16 @@ export default {
         this.nameDirectory === ""
           ? this.directory
           : this.directory.filter((r) =>
-              r.nameDirectory.includes(this.nameDirectory)
+              r.name.includes(this.nameDirectory)
             );
       return listdisplay.sort((a, b) => a.name > b.name);
-      // return this.directory.filter(directory => directory.name.includes(this.nameDirectory))
+   
     },
   },
 };
 
-// methods: {
-// // focusPoint()
-// // {
-// //   this.$refs.searchBar.focus();
-// // }
 
-// }
+
 </script>
 
 <style scoped>
