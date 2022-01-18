@@ -76,11 +76,19 @@ export default {
 
   methods:
   {
-    upperCaseFilter(nameValue)
+    upperCaseFilter(filterValue, nameValue)
     {
-     const filterName = nameValue.ToUpperCase();
-      return filterName.includes(this.nameDirectory);
+     const filterName = nameValue.toUpperCase();
+     const simpleFilter = filterValue.toUpperCase(); //this.nameDirectory but it does not work
+      return filterName.includes(simpleFilter);
       
+    },
+
+    phoneNumberFilter(filterValue, phoneValue)
+    {
+      const filterPhone = phoneValue.toString();
+     const simpleFilter = filterValue.toString(); //this.nameDirectory but it does not work, ask Alex
+      return filterPhone.includes(simpleFilter);
     }
   },
 
@@ -90,7 +98,8 @@ export default {
         this.nameDirectory === ""
           ? this.directory
           : this.directory.filter((r) =>
-              r.name.includes(this.nameDirectory) || r.phone.includes(this.nameDirectory)
+             this.upperCaseFilter(this.nameDirectory, r.name) ||
+             this.phoneNumberFilter(this.nameDirectory, r.phone) //|| r.phone.includes(this.nameDirectory)
             );
       return listdisplay.sort((a, b) => a.name > b.name);
    
