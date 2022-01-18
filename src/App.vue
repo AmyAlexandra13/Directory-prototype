@@ -1,15 +1,29 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<template> 
+  <div>
+<nav class="navbar" id="snow">
+  <a class="navbar-brand" href="#" id="snowletter"> 
+  <img class="img-fluid logo-img" src="https://snow.edu/_resources/images/snowcollegelogo-275x72.png" alt="Snow College"></a>
+</nav>
+
+<Table msg="Welcome to Your Vue.js App"/>
+
+  
+
+
+ 
+</div>
+
+
+    
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Table from './components/Table.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Table
   }
 }
 </script>
@@ -21,6 +35,20 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
+
+#snowletter
+{
+ position: absolute;
+  
+}
+
+#snow{
+  position: relative;
+  height: 5em;
+width: 100em;  
+background-color: rgb(14, 24, 66);
+}
+
 </style>
