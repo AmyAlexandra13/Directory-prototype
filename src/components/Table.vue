@@ -56,22 +56,32 @@ export default {
         {
           id: 1,
           name: "Abid, Wissem",
-          phone: 4352837435,
+          phone: "4352837435",
         },
 
         {
           id: 2,
           name: "Marie, Will",
-          phone: 4352837435,
+          phone: "4352837435",
         },
 
         {
           id: 3,
           name: "Becky Adams",
-          phone: 4352837435,
+          phone: "884-5645-5454",
         },
       ],
     };
+  },
+
+  methods:
+  {
+    upperCaseFilter(nameValue)
+    {
+     const filterName = nameValue.ToUpperCase();
+      return filterName.includes(this.nameDirectory);
+      
+    }
   },
 
   computed: {
@@ -80,12 +90,14 @@ export default {
         this.nameDirectory === ""
           ? this.directory
           : this.directory.filter((r) =>
-              r.name.includes(this.nameDirectory)
+              r.name.includes(this.nameDirectory) || r.phone.includes(this.nameDirectory)
             );
       return listdisplay.sort((a, b) => a.name > b.name);
    
     },
   },
+
+  
 };
 
 
