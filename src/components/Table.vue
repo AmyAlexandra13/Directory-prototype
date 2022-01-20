@@ -57,18 +57,33 @@ export default {
           id: 1,
           name: "Abid, Wissem",
           phone: "4352837435",
+          deparment: "Center for Global Engagement",
+          building: "Noyes building"
         },
 
         {
           id: 2,
           name: "Marie, Will",
           phone: "4352837435",
+          deparment: "Greenwood Student Center",
+          building: "Greenwood Student Center"
+          
         },
 
         {
           id: 3,
           name: "Becky Adams",
           phone: "884-5645-5454",
+          deparment: "Center for Global Engagement",
+           building: "Noyes building"
+        },
+
+         {
+          id: 4,
+          name: "Michael Daniel",
+          phone: "(801)-5645-5454",
+          deparment: "Athletics",
+          building: "AC"
         },
       ],
     };
@@ -89,6 +104,20 @@ export default {
       const filterPhone = phoneValue.toString();
      const simpleFilter = filterValue.toString(); //this.nameDirectory but it does not work, ask Alex
       return filterPhone.includes(simpleFilter);
+    },
+
+    deparmentFilter(filterValue, deparmentValue)
+    {
+      const filterDeparment = deparmentValue.toUpperCase();
+      const simpleFilter = filterValue.toUpperCase();
+      return filterDeparment.includes(simpleFilter);
+    },
+
+    buildingFilter(filterValue, buildingValue)
+    {
+      const filterbuilding = buildingValue.toUpperCase();
+      const simpleFilter = filterValue.toUpperCase();
+      return filterbuilding.includes(simpleFilter);
     }
   },
 
@@ -99,7 +128,9 @@ export default {
           ? this.directory
           : this.directory.filter((r) =>
              this.upperCaseFilter(this.nameDirectory, r.name) ||
-             this.phoneNumberFilter(this.nameDirectory, r.phone) //|| r.phone.includes(this.nameDirectory)
+             this.phoneNumberFilter(this.nameDirectory, r.phone) ||
+             this.deparmentFilter(this.nameDirectory, r.deparment) ||
+             this.buildingFilter(this.nameDirectory, r.building)
             );
       return listdisplay.sort((a, b) => a.name > b.name);
    
@@ -109,9 +140,12 @@ export default {
   
 };
 
-
+// Notes
+//  || r.phone.includes(this.nameDirectory)
 
 </script>
 
 <style scoped>
 </style>
+
+
