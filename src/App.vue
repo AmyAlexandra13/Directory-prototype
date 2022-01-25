@@ -1,14 +1,15 @@
 <template> 
   <div>
-<nav class="navbar" id="snow">
-  <a class="navbar-brand" href="#" id="snowletter"> 
+<nav class="navbar" id="snowNavbar">
+  <a class="navbar-brand" href="#" id="snowLogo"> 
   <img class="img-fluid logo-img" src="https://snow.edu/_resources/images/snowcollegelogo-275x72.png" alt="Snow College"></a>
 </nav>
 
-<Table msg="Welcome to Your Vue.js App"/>
 
+
+
+<Table />
   
-
 
  
 </div>
@@ -29,6 +30,9 @@ export default {
 </script>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -38,17 +42,24 @@ export default {
   margin-top: 0px;
 }
 
-#snowletter
-{
- position: absolute;
-  
-}
-
-#snow{
+#snowNavbar{
   position: relative;
   height: 5em;
 width: 100em;  
 background-color: rgb(14, 24, 66);
 }
 
+#snowLogo
+{
+ position: absolute;
+  
+}
+
+.breadcrumb{
+  background-color: transparent;
+}
+.breadcrumb-item > a
+{
+  color: rgb(244,121, 32);
+}
 </style>

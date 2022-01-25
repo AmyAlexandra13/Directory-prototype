@@ -7,16 +7,20 @@
           <li class="breadcrumb-item active" aria-current="page">Directory</li>
         </ol>
       </nav>
+
+
+
     </div>
     <!-- here closes the breadcrumb div -->
 
-    <div class="form-group row">
-      <div class="col-sm-2 text-end">
-        <label class="col-form-label" for="nameDirectory2"> Name: </label>
-      </div>
+    <div class="text-left">
+<h1 id="titleDirectory">Directory</h1>
+</div>
 
+
+    <div class="form-group row">
       <div class="col-sm-10">
-        <input class="form-control" v-model="nameDirectory" />
+        <input class="form-control" placeholder="Search for name, deparment, and building..." v-model="nameDirectory" />
       </div>
 
       <div class="col-sm-10">
@@ -146,6 +150,13 @@ export default {
 </script>
 
 <style scoped>
+#titleDirectory{
+  position: relative;
+ font-family: 'Bebas Neue', cursive;
+ color: rgb(14, 24, 66);
+}
+
+
 </style>
 
 
