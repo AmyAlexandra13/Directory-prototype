@@ -89,6 +89,23 @@ export default {
           deparment: "Athletics",
           building: "AC"
         },
+
+             {
+          id: 5,
+          name: "Emil Cruz",
+          phone: "802-5645-5454",
+          deparment: "Athletics",
+          building: "AC"
+        },
+
+              {
+          id: 6,
+          name: "JAIDEN JULES",
+          phone: "802-5645-5454",
+          deparment: "Athletics",
+          building: "AC"
+        },
+
       ],
     };
   },
@@ -122,7 +139,21 @@ export default {
       const filterbuilding = buildingValue.toUpperCase();
       const simpleFilter = filterValue.toUpperCase();
       return filterbuilding.includes(simpleFilter);
+    },
+
+    // spaceFilter(filterValue, spaceValue)
+    // {
+    //   const filterSpace = spaceValue.toLocaleUpperCase();
+    //   const simpleFilter = filterValue.toLocaleUpperCase();
+    //   return filterSpace.includes(simpleFilter);
+    // }
+
+      spaceFilter(filterValue)
+    {
+     const upperCase = filterValue.toLocaleUpperCase();
+     return upperCase;
     }
+
   },
 
   computed: {
@@ -134,7 +165,8 @@ export default {
              this.upperCaseFilter(this.nameDirectory, r.name) ||
              this.phoneNumberFilter(this.nameDirectory, r.phone) ||
              this.deparmentFilter(this.nameDirectory, r.deparment) ||
-             this.buildingFilter(this.nameDirectory, r.building)
+             this.buildingFilter(this.nameDirectory, r.building) ||
+             this.spaceFilter(this.nameDirectory)
             );
       return listdisplay.sort((a, b) => a.name > b.name);
    
