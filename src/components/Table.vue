@@ -20,7 +20,7 @@
 
     <div class="form-group row">
       <div class="col-sm-10">
-        <input class="form-control" placeholder="Search for name, deparment, and building..." v-model="nameDirectory" />
+        <input class="form-control" placeholder="Search for name, deparment, and building..." v-model.trim="nameDirectory" />
       </div>
 
       <div class="col-sm-10">
@@ -47,6 +47,8 @@
       </div>
     </div>
   </div>
+
+
 </template>
 
 
@@ -55,6 +57,7 @@ export default {
   name: "Table",
   data() {
     return {
+      testword: "",
       nameDirectory: "",
       directory: [
         {
@@ -115,7 +118,7 @@ export default {
     upperCaseFilter(filterValue, nameValue)
     {
      const filterName = nameValue.toUpperCase();
-     const simpleFilter = filterValue.toUpperCase(); //this.nameDirectory but it does not work
+     const simpleFilter = filterValue.toUpperCase();//this.nameDirectory but it does not work
       return filterName.includes(simpleFilter);
       
     },
@@ -123,7 +126,7 @@ export default {
     phoneNumberFilter(filterValue, phoneValue)
     {
       const filterPhone = phoneValue.toString();
-     const simpleFilter = filterValue.toString(); //this.nameDirectory but it does not work, ask Alex
+     const simpleFilter = filterValue.toString(); 
       return filterPhone.includes(simpleFilter);
     },
 
@@ -141,18 +144,14 @@ export default {
       return filterbuilding.includes(simpleFilter);
     },
 
-    // spaceFilter(filterValue, spaceValue)
-    // {
-    //   const filterSpace = spaceValue.toLocaleUpperCase();
-    //   const simpleFilter = filterValue.toLocaleUpperCase();
-    //   return filterSpace.includes(simpleFilter);
-    // }
 
-      spaceFilter(filterValue)
-    {
-     const upperCase = filterValue.toLocaleUpperCase();
-     return upperCase;
-    }
+
+    //   spaceFilter(filterValue, nameTrimValue)
+    // {
+    //  const spaceValue  = nameTrimValue.trim();
+    //  const simpleFilter = filterValue.trim();
+    //  return spaceValue.includes(simpleFilter);
+    // },
 
   },
 
@@ -160,20 +159,17 @@ export default {
     filterdirectory() {
       const listdisplay =
         this.nameDirectory === ""
-          ? this.directory
-          : this.directory.filter((r) =>
+        ? this.directory  
+        : this.directory.filter((r) =>
              this.upperCaseFilter(this.nameDirectory, r.name) ||
              this.phoneNumberFilter(this.nameDirectory, r.phone) ||
              this.deparmentFilter(this.nameDirectory, r.deparment) ||
-             this.buildingFilter(this.nameDirectory, r.building) ||
-             this.spaceFilter(this.nameDirectory)
+             this.buildingFilter(this.nameDirectory, r.building)
             );
       return listdisplay.sort((a, b) => a.name > b.name);
    
     },
-  },
-
-  
+  },  
 };
 
 // Notes
