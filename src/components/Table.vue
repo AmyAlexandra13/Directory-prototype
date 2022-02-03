@@ -109,6 +109,14 @@ export default {
           building: "AC"
         },
 
+                 {
+          id: 7,
+          name: "Amy Martinez",
+          phone: "802-5645-5454",
+          deparment: "Athletics",
+          building: "Humanities"
+        },
+
       ],
     };
   },
@@ -122,6 +130,8 @@ export default {
       return filterName.includes(simpleFilter);
       
     },
+
+
 
     phoneNumberFilter(filterValue, phoneValue)
     {
@@ -167,6 +177,22 @@ export default {
              this.buildingFilter(this.nameDirectory, r.building)
             );
       return listdisplay.sort((a, b) => a.name > b.name);
+
+  //     computed: {
+	// sortedArray() {
+	// 	let sortedRecipes = this.recipes;
+		
+	// 	sortedRecipes = sortedRecipes.sort((a,b) => {
+	// 		let fa = a.title.toLowerCase(), fb = b.title.toLowerCase();
+	// 		if (fa < fb) {
+	// 			return -1
+	// 		}
+	// 		if (fa > fb) {
+	// 			return 1
+	// 		}
+	// 		return 0
+	// 	})
+	// }
    
     },
   },  
@@ -177,7 +203,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 #titleDirectory{
   position: relative;
  font-family: 'Bebas Neue', cursive;
