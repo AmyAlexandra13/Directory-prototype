@@ -8,6 +8,7 @@
 
 
 
+
 <Table />
   
 
@@ -32,6 +33,7 @@ export default {
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

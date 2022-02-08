@@ -21,7 +21,8 @@
     <div class="form-group row">
       <div class="col-sm-10">
         <input class="form-control" placeholder="Search for name, deparment, and building..." v-model.trim="nameDirectory" />
-      </div>
+        <i class ="bi bi-filter" v-on:click="upperCaseFilter(nameDirectory, nameValue)"/>
+               </div>
 
       <div class="col-sm-10">
         <table class="table table-hover">
@@ -176,23 +177,18 @@ export default {
              this.deparmentFilter(this.nameDirectory, r.deparment) ||
              this.buildingFilter(this.nameDirectory, r.building)
             );
-      return listdisplay.sort((a, b) => a.name > b.name);
+      return listdisplay.sort((a, b) => {
+        let fa = a.name, fb = b.name
+        if(fa < fb){
+          return - 1
+        } 
+       else{
+         return 1
+       }
+       
+      })    
 
-  //     computed: {
-	// sortedArray() {
-	// 	let sortedRecipes = this.recipes;
-		
-	// 	sortedRecipes = sortedRecipes.sort((a,b) => {
-	// 		let fa = a.title.toLowerCase(), fb = b.title.toLowerCase();
-	// 		if (fa < fb) {
-	// 			return -1
-	// 		}
-	// 		if (fa > fb) {
-	// 			return 1
-	// 		}
-	// 		return 0
-	// 	})
-	// }
+ 
    
     },
   },  
