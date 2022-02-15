@@ -1,5 +1,6 @@
 <template>
   <div class="container p-4">
+    <div class="col-lg-12">
     <div class="mx-auto">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -7,22 +8,45 @@
           <li class="breadcrumb-item active" aria-current="page">Directory</li>
         </ol>
       </nav>
-
+</div>
 
 
     </div>
     <!-- here closes the breadcrumb div -->
 
+
+<div class="body-content" id="containertable">
     <div class="text-left">
 <h1 id="titleDirectory">Directory</h1>
+<p>real one </p>
 </div>
 
 
     <div class="form-group row">
-      <div class="col-sm-10">
+      <div class="col-sm-8">
         <input class="form-control" placeholder="Search for name, deparment, and building..." v-model.trim="nameDirectory" />
-        <i class ="bi bi-filter" v-on:click="upperCaseFilter(nameDirectory, nameValue)"/>
                </div>
+
+<div class="col-sm-1 text-left">
+
+             <div class="dropdown">
+  <button class="bi bi-sliders btn dropdown-toggle" type="button" id="filterBtn" data-bs-toggle="dropdown" aria-expanded="false">
+   Filters
+  </button>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">Ephraim Campus</a></li>
+    <li><a class="dropdown-item" href="#">Richfield Campus</a></li>
+  </ul>
+</div> 
+         
+
+
+
+</div> <!-- this div closes col-sm2 -->
+
+    
+
 
       <div class="col-sm-10">
         <table class="table table-hover">
@@ -47,6 +71,8 @@
         </table>
       </div>
     </div>
+
+    </div>  <!-- here closes the containertable -->
   </div>
 
 
@@ -205,6 +231,14 @@ export default {
  font-family: 'Bebas Neue', cursive;
  color: rgb(14, 24, 66);
 }
+
+
+ #filterBtn{
+  color: rgb(14, 24, 66);
+}
+
+
+
 
 
 </style>

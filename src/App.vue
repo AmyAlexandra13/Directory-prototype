@@ -9,7 +9,7 @@
 
 
 
-<Table />
+<Table2 />
   
 
  
@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import Table from './components/Table.vue'
+import Table2 from './components/Tablecopy2.vue'
 export default {
   name: 'App',
   components: {
-    Table
+    Table2
   }
 }
 </script>
@@ -64,4 +64,6 @@ background-color: rgb(14, 24, 66);
 {
   color: rgb(244,121, 32);
 }
+
+
 </style>
