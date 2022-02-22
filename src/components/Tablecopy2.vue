@@ -19,6 +19,7 @@
     <div class="body-content" id="containertable">
       <div class="text-left">
         <h1 id="titleDirectory">Directory Table copy 2</h1>
+        <p>{{ filterByCampus }}</p>
       </div>
 
       <div class="row mb-4">
@@ -41,7 +42,11 @@
             </button>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Ephraim Campus</a></li>
+              <li>
+                <a class="dropdown-item" v-on:click="selectCampus('Ephraim')"
+                  >Ephraim Campus</a
+                >
+              </li>
               <li><a class="dropdown-item" href="#">Richfield Campus</a></li>
             </ul>
           </div>
@@ -50,8 +55,15 @@
 
       <div class="row mb-4">
         <div class="col-12 text-center">
-          <div id="btnGroup" class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-             <button type="button" class="btn btn-outline-dark"><a href="#A">A</a></button>
+          <div
+            id="btnGroup"
+            class="btn-group btn-group-sm"
+            role="group"
+            aria-label="Small button group"
+          >
+            <button type="button" class="btn btn-outline-dark">
+              <a href="#A">A</a>
+            </button>
             <li class="list-inline-item"><a href="#B">B</a></li>
             <li class="list-inline-item"><a href="#C">C</a></li>
             <li class="list-inline-item"><a href="#D">D</a></li>
@@ -77,8 +89,7 @@
             <li class="list-inline-item"><a href="#X">X</a></li>
             <li class="list-inline-item"><a href="#Y">Y</a></li>
             <li class="list-inline-item"><a href="#Z">Z</a></li>
-          
-        </div>
+          </div>
         </div>
       </div>
 
@@ -115,7 +126,9 @@ export default {
   name: "Table2",
   data() {
     return {
-      testword: "",
+      filterByCampus: false,
+      filterCampusValue: "",
+      message: "",
       nameDirectory: "",
       directory: [
         {
@@ -124,6 +137,7 @@ export default {
           phone: "4352837435",
           deparment: "Center for Global Engagement",
           building: "Noyes building",
+          campus: "Ephraim",
         },
 
         {
@@ -132,6 +146,7 @@ export default {
           phone: "4352837435",
           deparment: "Greenwood Student Center",
           building: "Greenwood Student Center",
+          campus: "Richfield",
         },
 
         {
@@ -140,6 +155,7 @@ export default {
           phone: "884-5645-5454",
           deparment: "Center for Global Engagement",
           building: "Noyes building",
+          campus: "Ephraim",
         },
 
         {
@@ -148,6 +164,7 @@ export default {
           phone: "(801)-5645-5454",
           deparment: "Athletics",
           building: "AC",
+          campus: "Ephraim",
         },
 
         {
@@ -156,6 +173,7 @@ export default {
           phone: "802-5645-5454",
           deparment: "Athletics",
           building: "AC",
+          campus: "Richfield",
         },
 
         {
@@ -164,6 +182,7 @@ export default {
           phone: "802-5645-5454",
           deparment: "Athletics",
           building: "AC",
+          campus: "Richfield",
         },
 
         {
@@ -172,6 +191,7 @@ export default {
           phone: "802-5645-5454",
           deparment: "Athletics",
           building: "Humanities",
+          campus: "Ephraim",
         },
       ],
     };
@@ -180,7 +200,7 @@ export default {
   methods: {
     upperCaseFilter(filterValue, nameValue) {
       const filterName = nameValue.toUpperCase();
-      const simpleFilter = filterValue.toUpperCase(); //this.nameDirectory but it does not work
+      const simpleFilter = filterValue.toUpperCase();
       return filterName.includes(simpleFilter);
     },
 
@@ -202,27 +222,22 @@ export default {
       return filterbuilding.includes(simpleFilter);
     },
 
-    //   spaceFilter(filterValue, nameTrimValue)
-    // {
-    //  const spaceValue  = nameTrimValue.trim();
-    //  const simpleFilter = filterValue.trim();
-    //  return spaceValue.includes(simpleFilter);
-    // },
-  },
+    selectCampus(campus) {
+      this.filterByCampus = true;
+      this.filterCampusValue = campus;
+    },
 
-  computed: {
-    filterdirectory() {
-      const listdisplay =
-        this.nameDirectory === ""
-          ? this.directory
-          : this.directory.filter(
-              (r) =>
-                this.upperCaseFilter(this.nameDirectory, r.name) ||
-                this.phoneNumberFilter(this.nameDirectory, r.phone) ||
-                this.deparmentFilter(this.nameDirectory, r.deparment) ||
-                this.buildingFilter(this.nameDirectory, r.building)
-            );
-      return listdisplay.sort((a, b) => {
+    FilterBySelectedCampus(campusValue, selectedCampusValue) {
+      console.log(campusValue, selectedCampusValue);
+      if (campusValue == selectedCampusValue) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    SortListAlphabetically(listDisplay) {
+      return listDisplay.sort((a, b) => {
         let fa = a.name,
           fb = b.name;
         if (fa < fb) {
@@ -233,6 +248,63 @@ export default {
       });
     },
   },
+
+  computed: {
+    filterdirectory() {
+      if (this.filterByCampus == true) {
+        const listdisplay = this.directory.filter(
+          (r) =>
+            this.FilterBySelectedCampus(r.campus, this.filterCampusValue) &&
+            (this.upperCaseFilter(this.nameDirectory, r.name) ||
+              this.phoneNumberFilter(this.nameDirectory, r.phone) ||
+              this.deparmentFilter(this.nameDirectory, r.deparment) ||
+              this.buildingFilter(this.nameDirectory, r.building))
+        );
+        return this.SortListAlphabetically(listdisplay);
+      } else {
+        const listdisplay =
+          this.nameDirectory === ""
+            ? this.directory
+            : this.directory.filter(
+                (r) =>
+                  this.upperCaseFilter(this.nameDirectory, r.name) ||
+                  this.phoneNumberFilter(this.nameDirectory, r.phone) ||
+                  this.deparmentFilter(this.nameDirectory, r.deparment) ||
+                  this.buildingFilter(this.nameDirectory, r.building)
+              );
+        return this.SortListAlphabetically(listdisplay);
+      }
+    },
+  },
+
+  // ephraimCampus(){
+  //   this.message = "you are filtering for Ephraim";
+  //   return this.directory.filter(
+  //     (list) => {
+  //       return list.building == "Ephraim";
+  //     });
+  // }
+
+  // ephraimCampus(){
+  //   return this.directory.filter(
+  //     (list) => {
+  //       return list.building == "Ephraim";
+  //     });
+
+  // }
+
+  //  filterdirectory2() {
+  //   return this.directory.filter((list) =>{
+  //     return list.campus.match(this.campusmatch);
+  //   })
+
+  // },
+
+  // filterdirectory2(){
+  //   return this.directory.filter((listdi) => {
+  //     return listdi.name.match(this.nameDirectory);
+  //   });
+  // },
 };
 
 // Notes
@@ -250,9 +322,9 @@ export default {
   color: rgb(14, 24, 66);
 }
 
-#btnGroup a{
+#btnGroup a {
   text-decoration: none;
-color: orange;
+  color: orange;
 }
 </style>
 
