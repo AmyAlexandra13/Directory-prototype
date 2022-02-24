@@ -47,7 +47,19 @@
                   >Ephraim Campus</a
                 >
               </li>
-              <li><a class="dropdown-item" href="#">Richfield Campus</a></li>
+
+              <li>
+                <a class="dropdown-item" v-on:click="selectCampus('Richfield')"
+                  >Richfield Campus</a
+                >
+              </li>
+
+            <li>
+                <a class="dropdown-item" v-on:click="disableFilter()"
+                  >Both campus</a
+                >
+              </li>
+
             </ul>
           </div>
         </div>
@@ -227,7 +239,7 @@ export default {
       this.filterCampusValue = campus;
     },
 
-    FilterBySelectedCampus(campusValue, selectedCampusValue) {
+    filterBySelectedCampus(campusValue, selectedCampusValue) {
       console.log(campusValue, selectedCampusValue);
       if (campusValue == selectedCampusValue) {
         return true;
@@ -236,7 +248,11 @@ export default {
       }
     },
 
-    SortListAlphabetically(listDisplay) {
+    disableFilter(){
+      return this.filterByCampus = false;
+    },
+
+    sortListAlphabetically(listDisplay) {
       return listDisplay.sort((a, b) => {
         let fa = a.name,
           fb = b.name;
@@ -248,19 +264,20 @@ export default {
       });
     },
   },
+  
 
   computed: {
     filterdirectory() {
       if (this.filterByCampus == true) {
         const listdisplay = this.directory.filter(
           (r) =>
-            this.FilterBySelectedCampus(r.campus, this.filterCampusValue) &&
+            this.filterBySelectedCampus(r.campus, this.filterCampusValue) &&
             (this.upperCaseFilter(this.nameDirectory, r.name) ||
               this.phoneNumberFilter(this.nameDirectory, r.phone) ||
               this.deparmentFilter(this.nameDirectory, r.deparment) ||
               this.buildingFilter(this.nameDirectory, r.building))
         );
-        return this.SortListAlphabetically(listdisplay);
+        return this.sortListAlphabetically(listdisplay);
       } else {
         const listdisplay =
           this.nameDirectory === ""
@@ -272,7 +289,7 @@ export default {
                   this.deparmentFilter(this.nameDirectory, r.deparment) ||
                   this.buildingFilter(this.nameDirectory, r.building)
               );
-        return this.SortListAlphabetically(listdisplay);
+        return this.sortListAlphabetically(listdisplay);
       }
     },
   },
