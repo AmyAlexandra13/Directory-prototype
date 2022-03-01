@@ -19,13 +19,16 @@
     <div class="body-content" id="containertable">
       <div class="text-left">
         <h1 id="titleDirectory">Directory Table copy 2</h1>
-        <p>{{ filterByCampus }}</p>
+        <p>{{ filterByCampus  + filterCampusValue }}</p>
+            <p>{{ message }}</p>
       </div>
 
       <div class="row mb-4">
         <div class="col-12">
-          <div class="input-group">
-            <input
+          <div class="form-input">
+            <span class="icon">
+            <i id="iconSearch" class="bi bi-search"></i> </span>
+            <input id="inputSearch"
               class="form-control mr-sm-2"
               placeholder="Search for name, deparment, and building..."
               v-model.trim="nameDirectory"
@@ -43,7 +46,7 @@
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a class="dropdown-item" v-on:click="selectCampus('Ephraim')"
+                <a class="dropdown-item" v-on:click="selectCampus('Ephraim') && indicateUser('Ephraim')"
                   >Ephraim Campus</a
                 >
               </li>
@@ -64,6 +67,9 @@
           </div>
         </div>
       </div>
+
+  
+   
 
       <div class="row mb-4">
         <div class="col-12 text-center">
@@ -128,8 +134,20 @@
         </table>
       </div>
     </div>
-    <!-- here closes the containertable -->
-  </div>
+
+
+ </div>
+
+ 
+     
+
+         
+         <!-- <div class="form-input2">
+            <span class="icon2"><i class="bi bi-search" aria-hidden="true"></i></span>
+            <input id="input2" type="email" name="email" placeholder="Enter your email">
+          </div> -->
+      
+ 
 </template>
 
 
@@ -248,7 +266,14 @@ export default {
       }
     },
 
+    indicateUser(campus){
+     campus = campus + "hey";
+     this.message = campus;
+     console.log(this.message);
+    },
+
     disableFilter(){
+      this.filterCampusValue = "";
       return this.filterByCampus = false;
     },
 
@@ -294,38 +319,10 @@ export default {
     },
   },
 
-  // ephraimCampus(){
-  //   this.message = "you are filtering for Ephraim";
-  //   return this.directory.filter(
-  //     (list) => {
-  //       return list.building == "Ephraim";
-  //     });
-  // }
-
-  // ephraimCampus(){
-  //   return this.directory.filter(
-  //     (list) => {
-  //       return list.building == "Ephraim";
-  //     });
-
-  // }
-
-  //  filterdirectory2() {
-  //   return this.directory.filter((list) =>{
-  //     return list.campus.match(this.campusmatch);
-  //   })
-
-  // },
-
-  // filterdirectory2(){
-  //   return this.directory.filter((listdi) => {
-  //     return listdi.name.match(this.nameDirectory);
-  //   });
-  // },
+  
 };
 
-// Notes
-//  || r.phone.includes(this.nameDirectory)
+
 </script>
 
 <style scoped lang="scss">
@@ -343,6 +340,35 @@ export default {
   text-decoration: none;
   color: orange;
 }
+
+.form-input{
+    position: relative;
+    display: flex;
+    margin: 10px auto;
+    align-items: center;
+    justify-content: center;
+
+    #inputSearch {
+      display: block;
+    border: 2px solid #eee;
+    padding: 5px 10px 5px 50px;
+    line-height: 30px;
+    outline: 0;
+    
+}
+.icon {
+    position: absolute;
+      display: flex;
+    left: 15px;
+    top: 10;
+     
+
+}
+}
+
+
+
+
 </style>
 
 
