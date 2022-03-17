@@ -19,25 +19,39 @@
     <div class="body-content" id="containertable">
       <div class="text-left">
         <h1 id="titleDirectory">Directory Table copy 2</h1>
-        <p>{{ filterByCampus  + filterCampusValue }}</p>
-            <p>{{ message }}</p>
+       
+      </div>
+
+      <div class="text-left" v-if="filterByCampus">
+        <button id="btnTag" type="button" class="btn btn-primary">
+         {{filterCampusValue}}
+         <i id="iconTag" class="bi bi-x-lg"></i>
+        </button>
       </div>
 
       <div class="row mb-4">
         <div class="col-12">
           <div class="form-input">
-            <span class="icon">
-            <i id="iconSearch" class="bi bi-search"></i> </span>
-            <input id="inputSearch"
+            <span class="icon" id="spanIcon">
+              <i id="iconSearch" class="bi bi-search"></i>
+            </span>
+
+            <!-- <span v-if="filterByCampus" class="icon2" id="spanIcon">
+              <p id="campusTag">{{filterCampusValue}} </p>
+             
+            </span>  -->
+
+            <input
+              id="inputSearch"
+              ref="inputFocus"
               class="form-control mr-sm-2"
               placeholder="Search for name, deparment, and building..."
               v-model.trim="nameDirectory"
             />
 
             <button
-              class="bi bi-sliders btn dropdown-toggle"
+              class="bi bi-sliders btn dropdown-toggle filterBtn"
               type="button"
-              id="filterBtn"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
@@ -46,30 +60,35 @@
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a class="dropdown-item" v-on:click="selectCampus('Ephraim') && indicateUser('Ephraim')"
+                <a
+                  class="dropdown-item"
+                  @click="FocusInput()"
+                  v-on:click="selectCampus('Ephraim')"
                   >Ephraim Campus</a
                 >
               </li>
 
               <li>
-                <a class="dropdown-item" v-on:click="selectCampus('Richfield')"
+                <a
+                  class="dropdown-item"
+                  @click="FocusInput()"
+                  v-on:click="selectCampus('Richfield')"
                   >Richfield Campus</a
                 >
               </li>
 
-            <li>
-                <a class="dropdown-item" v-on:click="disableFilter()"
+              <li>
+                <a
+                  class="dropdown-item"
+                  @click="FocusInput()"
+                  v-on:click="disableFilter()"
                   >Both campus</a
                 >
               </li>
-
             </ul>
           </div>
         </div>
       </div>
-
-  
-   
 
       <div class="row mb-4">
         <div class="col-12 text-center">
@@ -134,20 +153,12 @@
         </table>
       </div>
     </div>
+  </div>
 
-
- </div>
-
- 
-     
-
-         
-         <!-- <div class="form-input2">
+  <!-- <div class="form-input2">
             <span class="icon2"><i class="bi bi-search" aria-hidden="true"></i></span>
             <input id="input2" type="email" name="email" placeholder="Enter your email">
           </div> -->
-      
- 
 </template>
 
 
@@ -160,6 +171,7 @@ export default {
       filterCampusValue: "",
       message: "",
       nameDirectory: "",
+      testing: "",
       directory: [
         {
           id: 1,
@@ -228,6 +240,10 @@ export default {
   },
 
   methods: {
+    FocusInput() {
+      this.$refs.inputFocus.focus();
+    },
+
     upperCaseFilter(filterValue, nameValue) {
       const filterName = nameValue.toUpperCase();
       const simpleFilter = filterValue.toUpperCase();
@@ -255,6 +271,7 @@ export default {
     selectCampus(campus) {
       this.filterByCampus = true;
       this.filterCampusValue = campus;
+      this.AddCampusTag();
     },
 
     filterBySelectedCampus(campusValue, selectedCampusValue) {
@@ -266,15 +283,13 @@ export default {
       }
     },
 
-    indicateUser(campus){
-     campus = campus + "hey";
-     this.message = campus;
-     console.log(this.message);
+    indicateUser(message2) {
+      this.message = message2;
     },
 
-    disableFilter(){
+    disableFilter() {
       this.filterCampusValue = "";
-      return this.filterByCampus = false;
+      return (this.filterByCampus = false);
     },
 
     sortListAlphabetically(listDisplay) {
@@ -288,8 +303,15 @@ export default {
         }
       });
     },
+
+    // AddCampusTag() {
+    //  this.nameDirectory = (this.filterCampusValue+":");
+    // },
   },
-  
+
+  mounted() {
+    this.FocusInput();
+  },
 
   computed: {
     filterdirectory() {
@@ -318,11 +340,7 @@ export default {
       }
     },
   },
-
-  
 };
-
-
 </script>
 
 <style scoped lang="scss">
@@ -332,43 +350,64 @@ export default {
   color: rgb(14, 24, 66);
 }
 
-#filterBtn {
+#btnTag{
+  border-radius: 12px;
+  background-color: rgb(244, 121, 32);
+  border: none;
+}
+
+#iconTag:hover{
+  color: black;
+  box-shadow: 2em;
+}
+
+
+
+.filterBtn {
+  // color: rgb(14, 24, 66);
   color: rgb(14, 24, 66);
 }
 
+
+
+
 #btnGroup a {
   text-decoration: none;
-  color: orange;
+  color: rgb(244, 121, 32);
 }
 
-.form-input{
-    position: relative;
-    display: flex;
-    margin: 10px auto;
-    align-items: center;
-    justify-content: center;
+.form-input {
+  position: relative;
+  display: flex;
+  margin: 10px auto;
+  align-items: center;
+  justify-content: center;
 
-    #inputSearch {
-      display: block;
+  #inputSearch {
+    display: block;
     border: 2px solid #eee;
     padding: 5px 10px 5px 50px;
     line-height: 30px;
     outline: 0;
-    
-}
-.icon {
+  }
+  .icon {
     position: absolute;
-      display: flex;
+    display: flex;
     left: 15px;
     top: 10;
-     
+  }
 
+  .icon2 {
+    position: absolute;
+    display: block;
+    left: 35px;
+    top: 10;
+  }
+
+  .icon2 > p {
+    color: red;
+  }
 }
-}
-
-
-
-
 </style>
 
 
