@@ -18,14 +18,14 @@
 
     <div class="body-content" id="containertable">
       <div class="text-left">
-        <h1 id="titleDirectory">Directory Table copy 2</h1>
+        <h1 id="titleDirectory">Directory</h1>
        
       </div>
 
       <div class="text-left" v-if="filterByCampus">
         <button id="btnTag" type="button" class="btn btn-primary">
          {{filterCampusValue}}
-         <i id="iconTag" class="bi bi-x-lg"></i>
+         <i id="iconTag" class="bi bi-x-lg" @click="disableFilter()"></i>
         </button>
       </div>
 
@@ -77,14 +77,7 @@
                 >
               </li>
 
-              <li>
-                <a
-                  class="dropdown-item"
-                  @click="FocusInput()"
-                  v-on:click="disableFilter()"
-                  >Both campus</a
-                >
-              </li>
+             
             </ul>
           </div>
         </div>
@@ -357,8 +350,7 @@ export default {
 }
 
 #iconTag:hover{
-  color: black;
-  box-shadow: 2em;
+  box-shadow: 2px 2px;
 }
 
 
