@@ -9,7 +9,7 @@
 
 
 
-<Table2 />
+<Table />
   
 
  
@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import Table2 from './components/Tablecopy2.vue'
+import Table from './components/Table.vue'
 export default {
   name: 'App',
   components: {
-    Table2
+    Table
   }
 }
 </script>
@@ -60,10 +60,7 @@ background-color: rgb(14, 24, 66);
 .breadcrumb{
   background-color: transparent;
 }
-.breadcrumb-item > a
-{
-  color: rgb(244,121, 32);
-}
+
 
 
 </style>
