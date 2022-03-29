@@ -73,6 +73,50 @@
       </div>
 
       <div class="d-flex flex-wrap row mb-4">
+        
+        <div class="col-md-4">
+          <a
+            title="Full Employee Phone List"
+            href="https://snow.edu/directory/employee_phone.php"
+            target="_blank"
+            >
+            <img
+              src="https://snow.edu/directory/images/printphone.jpg"
+              alt="Snow College Phone List"
+              class="img-fluid"
+            />
+          </a>
+        </div>
+
+        <div class="col-md-4">
+          <a
+            title="Full Employee Phone List"
+            href="https://snow.edu/directory/employee_phone.php?campus=Ephraim"
+             target="_blank"
+            ><img
+              src="https://snow.edu/directory/images/printephraim.jpg"
+              alt="Snow College Phone List"
+              class="img-fluid"
+            />
+          </a>
+        </div>
+
+        <div class="col-md-3">
+          <a
+            title="Full Employee Phone List"
+            href="https://snow.edu/directory/employee_phone.php?campus=Richfield"
+             target="_blank"
+            ><img
+              src="https://snow.edu/directory/images/printrichfield.jpg"
+              alt="Snow College Phone List"
+              class="img-fluid"
+            />
+          </a>
+        </div>
+       
+      </div>
+
+      <div class="d-flex flex-wrap row mb-4">
         <div class="col-11">
           <div
             id="btnGroup"
@@ -203,7 +247,7 @@
                 <a href="#"> {{ info.phone }} </a>
               </td>
 
-               <td>
+              <td>
                 <a href="#"> {{ info.email }} </a>
               </td>
             </tr>
@@ -364,10 +408,6 @@ export default {
         }
       });
     },
-
-    // AddCampusTag() {
-    //  this.nameDirectory = (this.filterCampusValue+":");
-    // },
   },
 
   mounted() {
@@ -405,15 +445,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-
-
 .btn-group > button {
   font-size: 14px;
   border-color: rgb(244, 121, 32);
-
 }
-
 
 a {
   color: rgb(244, 121, 32);
@@ -430,7 +465,6 @@ table {
   color: rgb(14, 24, 66);
 }
 
-
 #btnTag {
   border-radius: 12px;
   background-color: rgb(244, 121, 32);
@@ -439,6 +473,7 @@ table {
 
 #iconTag:hover {
   box-shadow: 2px 2px;
+ background-color: rgb(14, 24, 66);
 }
 
 .filterBtn {
@@ -478,10 +513,6 @@ table {
     left: 35px;
     top: 10;
   }
-
-
-
-
 }
 </style>
 
