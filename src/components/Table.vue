@@ -19,24 +19,27 @@
         <h1 id="titleDirectory">Directory</h1>
       </div>
 
-      <div class="text-left" v-if="filterByCampus">
+      <!-- <div id="btnTagContainer" class="sticky-top text-left" v-if="filterByCampus">
+        <button id="btnTag" type="button" class="btn btn-primary">
+          {{ filterCampusValue }}
+          <i id="iconTag" class="bi bi-x-lg" @click="disableFilter()"></i>
+        </button>
+      </div> -->
+
+      <div class="sticky-top d-flex flex-wrap row mb-4">
+        <div class="col-12">
+          <div id="btnTagContainer" class="sticky-top text-left" v-if="filterByCampus">
         <button id="btnTag" type="button" class="btn btn-primary">
           {{ filterCampusValue }}
           <i id="iconTag" class="bi bi-x-lg" @click="disableFilter()"></i>
         </button>
       </div>
-
-      <div class="d-flex flex-wrap row mb-4">
-        <div class="col-12">
           <div class="form-input">
             <span class="icon" id="spanIcon">
               <i id="iconSearch" class="bi bi-search"></i>
             </span>
 
-            <!-- <span v-if="filterByCampus" class="icon2" id="spanIcon">
-              <p id="campusTag">{{filterCampusValue}} </p>
-             
-            </span>  -->
+ 
 
             <input
               id="inputSearch"
@@ -52,7 +55,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Filters
+              Campus
             </button>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -227,11 +230,12 @@
         </div>
       </div>
 
-      <div class="table-sm">
-        <table class="table table-striped table-bordered table-hover">
-          <thead class="bold">
+      <div class="table-responsive">
+        <table class="table table-light table-sm table-striped">
+          <!-- table table-striped table-bordered table-hover -->
+          <thead class="thead-light">
             <tr>
-              <th>Name</th>
+              <th>Name</th> 
               <th>Phone</th>
               <th>Email</th>
             </tr>
@@ -281,7 +285,7 @@ export default {
 
         {
           id: 2,
-          name: "Marie, Will",
+          name: "Will, Marie",
           phone: "4352837435",
           email: "emailemail@.com",
           deparment: "Greenwood Student Center",
@@ -291,7 +295,7 @@ export default {
 
         {
           id: 3,
-          name: "Becky Adams",
+          name: "Adams, Becky",
           phone: "884-5645-5454",
           email: "emailemail@.com",
           deparment: "Center for Global Engagement",
@@ -301,7 +305,7 @@ export default {
 
         {
           id: 4,
-          name: "Michael Daniel",
+          name: "Daniel, Michael",
           phone: "(801)-5645-5454",
           email: "emailemail@.com",
           deparment: "Athletics",
@@ -311,7 +315,7 @@ export default {
 
         {
           id: 5,
-          name: "Emil Cruz",
+          name: "Cruz, Emil",
           phone: "802-5645-5454",
           email: "emailemail@.com",
           deparment: "Athletics",
@@ -321,7 +325,7 @@ export default {
 
         {
           id: 6,
-          name: "JAIDEN JULES",
+          name: "Jules, Jaiden",
           phone: "802-5645-5454",
           email: "emailemail@.com",
           deparment: "Athletics",
@@ -331,13 +335,160 @@ export default {
 
         {
           id: 7,
-          name: "Amy Martinez",
+          name: "Martinez, Amy",
           phone: "802-5645-5454",
           email: "emailemail@.com",
           deparment: "Athletics",
           building: "Humanities",
           campus: "Ephraim",
         },
+
+           {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+         {
+          id: 7,
+          name: "Martinez, Amy",
+          phone: "802-5645-5454",
+          email: "emailemail@.com",
+          deparment: "Athletics",
+          building: "Humanities",
+          campus: "Ephraim",
+        },
+      
+      
       ],
     };
   },
@@ -445,18 +596,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+
+
 .btn-group > button {
-  font-size: 14px;
+  font-size: 12px;
   border-color: rgb(244, 121, 32);
+
+}
+
+.btn-group > button:hover{
+  box-shadow: 2px 2px;
+ background-color: rgb(14, 24, 66);
 }
 
 a {
   color: rgb(244, 121, 32);
   text-decoration: none;
-}
-
-table {
-  background-color: white;
 }
 
 #titleDirectory {
@@ -513,6 +669,8 @@ table {
     left: 35px;
     top: 10;
   }
+
+  
 }
 </style>
 
