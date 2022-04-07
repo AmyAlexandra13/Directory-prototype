@@ -10,7 +10,8 @@
 
 
 <Table />
-  
+  <ArrowTop2/>
+ 
 
  
 </div>
@@ -21,11 +22,12 @@
 </template>
 
 <script>
+import ArrowTop2 from './components/ArrowTop2.vue'
 import Table from './components/Table.vue'
 export default {
   name: 'App',
   components: {
-    Table
+    Table, ArrowTop2
   }
 }
 </script>
