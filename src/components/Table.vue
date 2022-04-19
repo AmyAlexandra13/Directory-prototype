@@ -28,18 +28,20 @@
 
       <div class="sticky-top d-flex flex-wrap row mb-4">
         <div class="col-12">
-          <div id="btnTagContainer" class="sticky-top text-left" v-if="filterByCampus">
-        <button id="btnTag" type="button" class="btn btn-primary">
-          {{ filterCampusValue }}
-          <i id="iconTag" class="bi bi-x-lg" @click="disableFilter()"></i>
-        </button>
-      </div>
+          <div
+            id="btnTagContainer"
+            class="sticky-top text-left"
+            v-if="filterByCampus"
+          >
+            <button id="btnTag" type="button" class="btn btn-primary">
+              {{ filterCampusValue }}
+              <i id="iconTag" class="bi bi-x-lg" @click="disableFilter()"></i>
+            </button>
+          </div>
           <div class="form-input">
             <span class="icon" id="spanIcon">
               <i id="iconSearch" class="bi bi-search"></i>
             </span>
-
- 
 
             <input
               id="inputSearch"
@@ -76,13 +78,12 @@
       </div>
 
       <div class="d-flex flex-wrap row mb-4">
-        
         <div class="col-md-4">
           <a
             title="Full Employee Phone List"
             href="https://snow.edu/directory/employee_phone.php"
             target="_blank"
-            >
+          >
             <img
               src="https://snow.edu/directory/images/printphone.jpg"
               alt="Snow College Phone List"
@@ -95,7 +96,7 @@
           <a
             title="Full Employee Phone List"
             href="https://snow.edu/directory/employee_phone.php?campus=Ephraim"
-             target="_blank"
+            target="_blank"
             ><img
               src="https://snow.edu/directory/images/printephraim.jpg"
               alt="Snow College Phone List"
@@ -108,125 +109,13 @@
           <a
             title="Full Employee Phone List"
             href="https://snow.edu/directory/employee_phone.php?campus=Richfield"
-             target="_blank"
+            target="_blank"
             ><img
               src="https://snow.edu/directory/images/printrichfield.jpg"
               alt="Snow College Phone List"
               class="img-fluid"
             />
           </a>
-        </div>
-       
-      </div>
-
-      <div class="d-flex flex-wrap row mb-4">
-        <div class="col-11">
-          <div
-            id="btnGroup"
-            class="d-block btn-group"
-            role="group"
-            aria-label="First group"
-          >
-            <button type="button" class="btn btn-outline-dark">
-              <a href="#A">A</a>
-            </button>
-            <button type="button" class="btn btn-outline-dark">
-              <a href="#B">B</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#C">C</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#D">D</a>
-            </button>
-            <button class="btn btn-outline-dark">
-              <a href="#E">E</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#F">F</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#G">G</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#H">H</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#I">I</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#J">J</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#K">K</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#L">L</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#M">M</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#N">N</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#O">O</a>
-            </button>
-            <button class="btn btn-outline-dark">
-              <a href="#P">P</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#Q">Q</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#R">R</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#S">S</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#T">T</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#U">U</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#V">V</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#W">W</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#X">X</a>
-            </button>
-            <button class="btn btn-outline-dark">
-              <a href="#Y">Y</a>
-            </button>
-
-            <button class="btn btn-outline-dark">
-              <a href="#Z">Z</a>
-            </button>
-          </div>
         </div>
       </div>
 
@@ -235,7 +124,7 @@
           <!-- table table-striped table-bordered table-hover -->
           <thead class="thead-light">
             <tr>
-              <th>Name</th> 
+              <th>Name</th>
               <th>Phone</th>
               <th>Email</th>
             </tr>
@@ -244,7 +133,13 @@
           <tbody>
             <tr v-for="info in filterdirectory" :key="info.name">
               <td>
-                <a class="LinkBold" href="#"> {{ info.name }} </a>
+                <a
+                  href="#"
+                  v-on:click="createArray(info.id, info.name)"
+                  class="LinkBold"
+                >
+                  {{ info.name }}
+                </a>
               </td>
 
               <td>
@@ -269,6 +164,10 @@ export default {
   data() {
     return {
       filterByCampus: false,
+      arrayInLocal: false,
+      realOne: [],
+      realSecond: [],
+      realListLS: [],
       filterCampusValue: "",
       message: "",
       nameDirectory: "",
@@ -343,7 +242,7 @@ export default {
           campus: "Ephraim",
         },
 
-           {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -352,7 +251,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -361,7 +260,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -370,7 +269,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -379,7 +278,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -388,7 +287,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -397,7 +296,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -406,7 +305,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -415,7 +314,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -424,7 +323,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -433,7 +332,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -442,7 +341,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -451,7 +350,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -460,7 +359,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -469,7 +368,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -478,7 +377,7 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-         {
+        {
           id: 7,
           name: "Martinez, Amy",
           phone: "802-5645-5454",
@@ -487,8 +386,6 @@ export default {
           building: "Humanities",
           campus: "Ephraim",
         },
-      
-      
       ],
     };
   },
@@ -559,6 +456,53 @@ export default {
         }
       });
     },
+
+ 
+
+    createArray(searchId, searchName) {
+      var array = [];
+
+      if (this.arrayInLocal == false) {
+        this.arrayInLocal = true;
+      var  newRecentSearch = {
+          id: searchId,
+          name: searchName,
+        };
+
+        array.push(newRecentSearch);
+        this.saveArrayToLS(array);
+      } else {
+
+        newRecentSearch = {
+          id: searchId,
+          name: searchName,
+        };
+
+     this.saveArrayToLS(newRecentSearch); 
+        
+      }
+    
+    },
+
+    saveArrayToLS(arrayNewRecentSearch)
+    {
+          this.realSecond.push(arrayNewRecentSearch)
+       let array2 = [];
+       array2 =  this.realSecond;
+       JSON.stringify(array2)
+      this.realOne = localStorage.setItem("reallist", JSON.stringify(array2));
+      //   this.realListLS = localStorage.getItem("reallist");
+      //  console.log(this.realListLS)
+   
+
+
+
+      
+    },
+
+
+
+  
   },
 
   mounted() {
@@ -596,18 +540,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-
-
 .btn-group > button {
   font-size: 12px;
   border-color: rgb(244, 121, 32);
-
 }
 
-.btn-group > button:hover{
+.btn-group > button:hover {
   box-shadow: 2px 2px;
- background-color: rgb(14, 24, 66);
+  background-color: rgb(14, 24, 66);
 }
 
 a {
@@ -629,7 +569,7 @@ a {
 
 #iconTag:hover {
   box-shadow: 2px 2px;
- background-color: rgb(14, 24, 66);
+  background-color: rgb(14, 24, 66);
 }
 
 .filterBtn {
@@ -669,8 +609,6 @@ a {
     left: 35px;
     top: 10;
   }
-
-  
 }
 </style>
 

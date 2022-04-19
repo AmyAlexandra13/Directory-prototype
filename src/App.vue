@@ -9,8 +9,10 @@
 
 
 
+<Alphabet/>
 <Table />
-  <ArrowTop2/>
+
+  <ArrowTop/>
  
 
  
@@ -22,12 +24,14 @@
 </template>
 
 <script>
-import ArrowTop2 from './components/ArrowTop2.vue'
+import Alphabet from './components/Alphabet.vue'
 import Table from './components/Table.vue'
+import ArrowTop from './components/ArrowTop.vue'
 export default {
   name: 'App',
   components: {
-    Table, ArrowTop2
+     Alphabet, Table, ArrowTop,
+   
   }
 }
 </script>

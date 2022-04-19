@@ -40,14 +40,11 @@
 </template>
 
 <script>
-import { throttle } from 'throttle-debounce';
 import SweetScroll from 'sweet-scroll';
-
 const KEY_ENTER = 0;
 const KEY_SPACE = 0;
+var page = document.documentElement;
 
-// const RIPPLE_DURATION = 0;
-const THROTTLE_DELAY = 0;
 
 const makeBgImage = (weight, fgColor) => {
   const color = fgColor.replace(/^#/, '');
@@ -178,7 +175,7 @@ export default {
     window.addEventListener('scroll', this.throttleScroll);
     
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.throttleResize) {
       window.removeEventListener('resize', this.throttleResize);
     }
@@ -189,21 +186,25 @@ export default {
   methods: {
     clickHandle(e) {
       if (!this.isRippleActive) {
-        const elTarget = e.target;
-        if (elTarget) {
+         const elTarget = e.target;
+          if (elTarget) {
           const rect = elTarget.getBoundingClientRect();
           const top = e.clientY - rect.top;
           const left = e.clientX - rect.left;
-          this.rippleStyle.top = fmtProp(top - this.size);
+        this.rippleStyle.top = fmtProp(top - this.size);
           this.rippleStyle.left = fmtProp(left - this.size);
+       
         }
         this.isRippleActive = true;
-        // setTimeout(() => {
-        //   this.isRippleActive = false;
-        // }, RIPPLE_DURATION);
+     
       }
-      scroller.to(0);//
+      
+        page.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  })
     },
+  
     handleScroll() { // toggle display by scrolling that makes the arrow to apear by scrolling down.
  
       this.isActive = window.pageYOffset > this.boundary;
