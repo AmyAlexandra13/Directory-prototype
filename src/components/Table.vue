@@ -79,6 +79,14 @@
 
       <div class="d-flex flex-wrap row mb-4">
         <div class="col-md-4">
+          <p v-if="realListLS"></p>
+
+          <p>{{ realListLS }}</p>
+        </div>
+      </div>
+
+      <div class="d-flex flex-wrap row mb-4">
+        <div class="col-md-4">
           <a
             title="Full Employee Phone List"
             href="https://snow.edu/directory/employee_phone.php"
@@ -135,7 +143,7 @@
               <td>
                 <a
                   href="#"
-                  v-on:click="createArray(info.id, info.name)"
+                  v-on:click="addDirectoryClickToHistory(info.id, info.name)"
                   class="LinkBold"
                 >
                   {{ info.name }}
@@ -457,52 +465,55 @@ export default {
       });
     },
 
- 
-
-    createArray(searchId, searchName) {
-      var array = [];
-
-      if (this.arrayInLocal == false) {
-        this.arrayInLocal = true;
-      var  newRecentSearch = {
-          id: searchId,
-          name: searchName,
-        };
-
-        array.push(newRecentSearch);
-        this.saveArrayToLS(array);
-      } else {
-
-        newRecentSearch = {
-          id: searchId,
-          name: searchName,
-        };
-
-     this.saveArrayToLS(newRecentSearch); 
-        
-      }
-    
-    },
-
-    saveArrayToLS(arrayNewRecentSearch)
-    {
-          this.realSecond.push(arrayNewRecentSearch)
-       let array2 = [];
-       array2 =  this.realSecond;
-       JSON.stringify(array2)
-      this.realOne = localStorage.setItem("reallist", JSON.stringify(array2));
-      //   this.realListLS = localStorage.getItem("reallist");
-      //  console.log(this.realListLS)
-   
-
-
-
-      
-    },
-
-
-
   
+    //     createArray(searchId, searchName) {
+    //   var array = [];
+
+    //   if (this.arrayInLocal == false) {
+    //     this.arrayInLocal = true;
+    //   var  newRecentSearch = {
+    //       id: searchId,
+    //       name: searchName,
+    //     };
+
+    //     array.push(newRecentSearch);
+    //     this.saveArrayToLS(array);
+    //   } else {
+
+    //     newRecentSearch = {
+    //       id: searchId,
+    //       name: searchName,
+    //     };
+
+    //  this.saveArrayToLS(newRecentSearch);
+
+    //   }
+
+    // },
+
+    addDirectoryClickToHistory(clickId, clickName) {
+      var history = localStorage.getItem("reallist");
+      if (history) {
+        var historyArray = JSON.parse(history);
+        historyArray.push({ id: clickId, name: clickName });
+        localStorage.setItem("reallist", JSON.stringify(historyArray));
+      } else {
+        const newHistoryArray = [{ id: clickId, name: clickName }];
+        const newHistoryString = JSON.stringify(newHistoryArray);
+        localStorage.setItem("reallist", newHistoryString);
+      }
+
+      this.realListLS = JSON.parse(localStorage.getItem("reallist"));
+
+     
+    },
+
+    // getListFromLS()
+    // {
+    //     this.realListLS = localStorage.getItem("reallist");
+    //     return
+
+    // }
   },
 
   mounted() {
