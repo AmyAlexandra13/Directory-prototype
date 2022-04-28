@@ -79,9 +79,12 @@
 
       <div class="d-flex flex-wrap row mb-4">
         <div class="col-md-4">
-          <p v-if="realListLS"></p>
-
-          <p>{{ realListLS }}</p>
+          <h2> Your recent searches </h2>
+          <ul class="historyList">
+            <li v-for="item in realListLS" :key="item.id">
+              {{ item.name }}
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -172,10 +175,7 @@ export default {
   data() {
     return {
       filterByCampus: false,
-      arrayInLocal: false,
-      realOne: [],
-      realSecond: [],
-      realListLS: [],
+      realListLS: "",
       filterCampusValue: "",
       message: "",
       nameDirectory: "",
@@ -465,32 +465,6 @@ export default {
       });
     },
 
-  
-    //     createArray(searchId, searchName) {
-    //   var array = [];
-
-    //   if (this.arrayInLocal == false) {
-    //     this.arrayInLocal = true;
-    //   var  newRecentSearch = {
-    //       id: searchId,
-    //       name: searchName,
-    //     };
-
-    //     array.push(newRecentSearch);
-    //     this.saveArrayToLS(array);
-    //   } else {
-
-    //     newRecentSearch = {
-    //       id: searchId,
-    //       name: searchName,
-    //     };
-
-    //  this.saveArrayToLS(newRecentSearch);
-
-    //   }
-
-    // },
-
     addDirectoryClickToHistory(clickId, clickName) {
       var history = localStorage.getItem("reallist");
       if (history) {
@@ -502,22 +476,15 @@ export default {
         const newHistoryString = JSON.stringify(newHistoryArray);
         localStorage.setItem("reallist", newHistoryString);
       }
-
       this.realListLS = JSON.parse(localStorage.getItem("reallist"));
-
-     
     },
-
-    // getListFromLS()
-    // {
-    //     this.realListLS = localStorage.getItem("reallist");
-    //     return
-
-    // }
   },
 
   mounted() {
     this.FocusInput();
+    if (localStorage.getItem("reallist")) {
+      this.realListLS = JSON.parse(localStorage.getItem("reallist"));
+    }
   },
 
   computed: {
@@ -551,6 +518,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+  .historyList {
+list-style-type: none;
+display: inline;
+  }
+
+  .historyList > li{
+    color: rgb(244, 121, 32);
+    padding: 15px;
+    display: inline;
+    
+  }
 .btn-group > button {
   font-size: 12px;
   border-color: rgb(244, 121, 32);
@@ -620,6 +599,8 @@ a {
     left: 35px;
     top: 10;
   }
+
+
 }
 </style>
 
