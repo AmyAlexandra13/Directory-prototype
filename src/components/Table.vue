@@ -16,7 +16,7 @@
 
     <div class="body-content" id="containertable">
       <div class="text-left">
-        <h1 id="titleDirectory">Directory</h1>
+        <h1 class="fontDirectory">Directory</h1>
       </div>
 
       <!-- <div id="btnTagContainer" class="sticky-top text-left" v-if="filterByCampus">
@@ -77,12 +77,12 @@
         </div>
       </div>
 
-      <div class="d-flex flex-wrap row mb-4">
-        <div class="col-md-4">
-          <h2> Your recent searches </h2>
+      <div v-if="realListLS" class="d-flex flex-wrap row mb-4">
+        <div class="text-left">
+          <h2 class="fontDirectory">Your recent searches</h2>
           <ul class="historyList">
-            <li v-for="item in realListLS" :key="item.id">
-              {{ item.name }}
+            <li v-for="history in realListLS" :key="history.name">
+              {{ history.name }}
             </li>
           </ul>
         </div>
@@ -142,7 +142,7 @@
           </thead>
 
           <tbody>
-            <tr v-for="info in filterdirectory" :key="info.name">
+            <tr v-for="info in filterDirectory" :key="info.name">
               <td>
                 <a
                   href="#"
@@ -176,6 +176,7 @@ export default {
     return {
       filterByCampus: false,
       realListLS: "",
+      realListLS2: "",
       filterCampusValue: "",
       message: "",
       nameDirectory: "",
@@ -488,7 +489,7 @@ export default {
   },
 
   computed: {
-    filterdirectory() {
+    filterDirectory() {
       if (this.filterByCampus == true) {
         const listdisplay = this.directory.filter(
           (r) =>
@@ -518,18 +519,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.historyList {
+  list-style-type: none;
+  display: inline;
+}
 
-  .historyList {
-list-style-type: none;
-display: inline;
-  }
-
-  .historyList > li{
-    color: rgb(244, 121, 32);
-    padding: 15px;
-    display: inline;
-    
-  }
+.historyList > li {
+  color: rgb(244, 121, 32);
+  margin: 30px;
+  display: inline;
+}
 .btn-group > button {
   font-size: 12px;
   border-color: rgb(244, 121, 32);
@@ -545,7 +544,7 @@ a {
   text-decoration: none;
 }
 
-#titleDirectory {
+.fontDirectory {
   position: relative;
   font-family: "Bebas Neue", cursive;
   color: rgb(14, 24, 66);
@@ -599,8 +598,6 @@ a {
     left: 35px;
     top: 10;
   }
-
-
 }
 </style>
 
